@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "georgia";
+        background-color: #bad0f0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: black;
+      }
+
+      .navbar {
+        width: 100%;
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+
+      .navbar ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+      }
+
+      .navbar ul li {
+        margin: 0 15px;
+      }
+
+      .navbar ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+
+      .navbar ul li a:hover {
+        color: crimson;
+      }
+
+      .login-container {
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 30px 40px;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        height: 400px;
+        max-width: 100%;
+        margin-top: 80px; /* Adjust top margin to account for the fixed navbar */
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 26px;
+        color: #ffffff;
+      }
+
+      .login-container label {
+        font-size: 14px;
+        color: #fff2f2;
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      .login-container input[type="text"],
+      .login-container input[type="password"],
+      .login-container input[type="email"] {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background-color: #f9f9f9;
+        box-sizing: border-box;
+        color: black;
+        font-size: 16px;
+      }
+
+      .login-container input[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background-color: black;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .login-container input[type="submit"]:hover {
+        background-color: #4b8691;
+      }
+
+      .login-container .forgot-password {
+        text-align: right;
+        font-size: 12px;
+        margin-top: -15px;
+        margin-bottom: 20px;
+      }
+
+      .login-container .forgot-password a {
+        color: #5c9ead;
+        text-decoration: none;
+      }
+
+      .login-container .forgot-password a:hover {
+        color: #4b8691;
+      }
+
+      /* Responsive for small screens */
+      @media (max-width: 400px) {
+        .login-container {
+          padding: 20px;
+        }
+
+        h2 {
+          font-size: 22px;
+        }
+
+        .login-container input[type="submit"] {
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .navbar ul {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .navbar ul li {
+          margin: 10px 0;
+        }
+
+        .navbar ul li a {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </div>
+    <div class="login-container">
+      <h2>Login</h2>
+      <p style="{{value}}">This Username already exists</p>
+      <form action="/signup" method="POST">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Enter your username"
+          required
+        />
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        />
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+        />
+        <input type="submit" value="Login" />
+      </form>
+    </div>
+  </body>
+</html>
