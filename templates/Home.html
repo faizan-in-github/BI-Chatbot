@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professional ChatGPT UI</title>
+    <style>
+      /* General body styling */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-image: url("https://i.pinimg.com/originals/7d/2a/9f/7d2a9fca264faa93561f72b5fc885fec.gif");
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+
+      .navbar ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+      }
+
+      .navbar ul li {
+        margin: 0 15px;
+      }
+
+      .navbar ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+
+      .navbar ul li a:hover {
+        color: crimson;
+      }
+
+      .bigcontainer {
+        height: calc(100vh - 60px);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 60px;
+      }
+
+      .robot {
+        height: 100vh;
+        width: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .chat-container {
+        width: 100%;
+        max-width: 950px;
+        height: 80vh;
+        max-height: 600px;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 40px;
+        box-sizing: border-box;
+      }
+
+      /* Chat box styles */
+      .chat-box {
+        flex-grow: 1;
+        overflow-y: auto;
+        border: 5px solid #ddd;
+        padding: 15px;
+        border-radius: 8px;
+        background-color: rgba(0, 0, 0, 0);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .chat-box .message {
+        margin-bottom: 12px;
+        display: flex;
+      }
+
+      .message.user {
+        justify-content: flex-end;
+      }
+
+      .message.bot {
+        justify-content: flex-start;
+      }
+
+      /* Chat message styles */
+      .message .content {
+        padding: 10px 15px;
+        border-radius: 8px;
+        max-width: 75%;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      .message.user .content {
+        background-color: #dc143c;
+        /* Crimson color */
+        color: white;
+      }
+
+      .message.bot .content {
+        background-color: #e9ecef;
+        color: #333;
+      }
+
+      /* Input area styles */
+      .input-area {
+        display: flex;
+        border-top: 1px solid #ddd;
+        padding-top: 15px;
+      }
+
+      .input-area input[type="text"] {
+        flex-grow: 1;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-right: 10px;
+        font-size: 14px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .input-area button {
+        padding: 12px 18px;
+        border: none;
+        background-color: #dc143c;
+        /* Crimson color */
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+      }
+
+      .input-area button:hover {
+        background-color: #a70f30;
+      }
+
+      /* Make it responsive */
+      @media (max-width: 768px) {
+        .navbar ul {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .navbar ul li {
+          margin: 10px 0;
+        }
+
+        .navbar ul li a {
+          font-size: 16px;
+        }
+
+        .chat-container {
+          width: 90%;
+          height: 70vh;
+        }
+
+        .input-area button {
+          font-size: 13px;
+        }
+
+        .input-area input[type="text"] {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Logout</a></li>
+      </ul>
+    </div>
+    <div class="bigcontainer">
+      <div class="chat-container">
+        <div class="chat-box" id="chatBox">
+          <!-- Chat messages will appear here -->
+
+          {% for chat in history %} {% if loop.index % 2 == 1 %}
+          <div
+            style="
+              background-color: #007bff; /* Professional blue color */
+              color: white;
+              padding: 12px 18px;
+              border-radius: 15px;
+              margin-bottom: 12px;
+              margin-left: 80px;
+              max-width: 80%;
+              align-self: flex-end;
+              position: relative;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            "
+          >
+            <p style="margin: 0; font-size: 15px; line-height: 1.4">
+              {{ chat }}
+            </p>
+          </div>
+          {% else %}
+          <div
+            style="
+              background-color: #e1e1e1; /* Light gray color */
+              color: #333;
+              padding: 12px 18px;
+              border-radius: 15px;
+              margin-bottom: 12px;
+              max-width: 80%;
+              align-self: flex-start;
+              position: relative;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            "
+          >
+            <p style="margin: 0; font-size: 15px; line-height: 1.4">
+              {{ chat }}
+            </p>
+          </div>
+          {% endif %} {% endfor %}
+          <form action="/chat" method="POST">
+            <div class="input-area">
+              <input
+                type="text"
+                id="userInput"
+                placeholder="Type your message..."
+                name="query"
+              />
+              <input type="submit" />
+            </div>
+            <p style="color: white">
+              If this is a database-related question, click here:
+              <input type="checkbox" id="subscribe" name="busi" value="yes" />
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      function scrollToBottom() {
+        var chatBox = document.getElementById("chatBox");
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      // Call scrollToBottom on page load and after new messages are added
+      window.onload = scrollToBottom;
+    </script>
+  </body>
+</html>
